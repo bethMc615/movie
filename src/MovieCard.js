@@ -5,13 +5,6 @@ import LinesEllipsis from 'react-lines-ellipsis';
 import moment from 'moment';
 import DefaultBackdrop from './img/default_backdrop.jpg';
 
-const galleryMovieStyle = {
-    width: '43%',
-    height: 'auto',
-    margin: '2%',
-    minWidth: '240px',
-};
-
 class MovieCard extends React.Component {
     static propTypes = {
         onClick: PropTypes.func.isRequired,
@@ -35,7 +28,6 @@ class MovieCard extends React.Component {
             <Card
                 className="movie"
                 hoverable
-                style = { galleryMovieStyle }
                 cover = {
                     <img 
                         alt = { movie.title } 

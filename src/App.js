@@ -4,7 +4,7 @@ import HeaderContent from './HeaderContent';
 import BreadcrumbContent from './BreadcrumbContent';
 import MainContent from './MainContent';
 import FooterContent from './FooterContent';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   render() {

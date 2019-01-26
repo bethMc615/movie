@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './img/logo_small.png';
-
+import logo from './img/logo.png';
 
 class HeaderContent extends React.Component {
 render() {

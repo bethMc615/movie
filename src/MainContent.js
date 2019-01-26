@@ -5,14 +5,6 @@ import SimilarMovies from './SimilarMovies';
 const API = 'https://api.themoviedb.org/3/movie/now_playing?api_key=e7e1c27cb630e7739b0288b53d67d16e&language=en-US&page=1&region=US';
 
 // const key = 'e7e1c27cb630e7739b0288b53d67d16e';
-const movieGalleryStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: '100%',
-    margin: '0 auto',
-    justifyContent: 'center',
-}
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -57,8 +49,8 @@ render() {
     }
 
     return (
-        <div className="mainContent" style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-            <div className="movies" style={ movieGalleryStyle }>
+        <div className="mainContent">
+            <div className="movies">
                 {movies.map(movie =>
                     <MovieCard 
                     movie={movie}

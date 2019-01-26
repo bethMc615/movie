@@ -72,3 +72,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### react-lines-ellipsis
 Truncate long text in movie descriptions
 https://www.npmjs.com/package/react-lines-ellipsis
+
+### moment
+Easily format dates
+https://www.npmjs.com/package/moment
+
+### node sass
+Use scss files for css
+https://www.npmjs.com/package/node-sass
