@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Layout } from 'antd';
+import HeaderContent from './HeaderContent';
+import BreadcrumbContent from './BreadcrumbContent';
+import MainContent from './MainContent';
+import FooterContent from './FooterContent';
 import './App.css';
 
 class App extends Component {
   render() {
+    const { Header, Content, Footer } = Layout;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Layout className="layout">
+        <Header>
+          <HeaderContent />
+        </Header>
+        <BreadcrumbContent />
+        <Content style={{ padding: '0 0px' }}>
+          <MainContent />
+        </Content>
+        <Footer>
+          <FooterContent />
+        </Footer>
+      </Layout>
     );
   }
 }
