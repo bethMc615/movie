@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './img/logo.png';
 
-class HeaderContent extends React.Component {
+class HeaderContainer extends React.Component {
 render() {
     return (
       <div className="header">
@@ -13,4 +13,4 @@ render() {
     )
   }
 }
-export default HeaderContent;
+export default HeaderContainer;

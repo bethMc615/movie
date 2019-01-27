@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
 
-class BreadcrumbContent extends React.Component {
+class BreadcrumbContainer extends React.Component {
     render(){
         return (
             <Breadcrumb>
@@ -12,5 +12,5 @@ class BreadcrumbContent extends React.Component {
     }
 }
 
-export default BreadcrumbContent;
+export default BreadcrumbContainer;
 

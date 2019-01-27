@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Card } from 'antd';
+import {fetchSimilarMovies} from './services/similarMoviesAPI';
 import DefaultPoster from './img/default_poster.jpg';
 
-const SimilarAPI = 'https://api.themoviedb.org/3/movie/{id}/similar?page=1&language=en-US&api_key=e7e1c27cb630e7739b0288b53d67d16e';
+//const SimilarAPI = 'https://api.themoviedb.org/3/movie/{id}/similar?page=1&language=en-US&api_key=e7e1c27cb630e7739b0288b53d67d16e';
 
-class SimilarMovies extends React.Component {
+class SimilarContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,6 +16,7 @@ class SimilarMovies extends React.Component {
         placement: 'right',
         similarMovies: [],
         isLoadingSimilar: false,
+        requestFailed: false,
         errorSimilar: null,
         currentTitle: null,
         };
@@ -22,20 +24,20 @@ class SimilarMovies extends React.Component {
     
     //listen for change on props
     componentWillReceiveProps(nextProps) {
-        this.setState({currentTitle: `Movies Similar to ${nextProps.title}`});
-        let customAPI = SimilarAPI.replace('{id}',nextProps.id);
-        this.setState({ isLoadingSimilar: true });
-        fetch(customAPI)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Something went wrong loading similar movies ...');
-            }
+        this.setState({currentTitle: `Movies Similar to ${nextProps.title}`, isLoadingSimilar: true});
+        fetchSimilarMovies({
+            id: nextProps.id,
+            page: '1',
         })
-        .then(data => this.setState({similarMovies: data.results, isLoadingSimilar: false }))
+        .then(data => {
+            this.setState({
+                requestFailed: false,
+                similarMovies: data.results,
+                isLoadingSimilar: false
+            })
+        })
         .then(this.setState({visible: true}))
-        .catch(errorSimilar => this.setState({ errorSimilar, isLoading: false }));
+        .catch(error => this.setState({ error, isLoadingSimilar: false }));
     };
 
     onClose = () => {
@@ -89,8 +91,8 @@ class SimilarMovies extends React.Component {
         )
     }
 }
-SimilarMovies.propTypes = {
+SimilarContainer.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
 }
-export default SimilarMovies;
+export default SimilarContainer;

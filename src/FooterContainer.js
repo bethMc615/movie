@@ -1,6 +1,6 @@
 import React from 'react';
 
-class FooterContent extends React.Component {
+class FooterContainer extends React.Component {
 render() {
     return (
       <div className="footer" style={{ textAlign: 'center' }}>
@@ -9,4 +9,4 @@ render() {
     )
   }
 }
-export default FooterContent;
+export default FooterContainer;

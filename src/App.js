@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import HeaderContent from './HeaderContent';
-import BreadcrumbContent from './BreadcrumbContent';
-import MainContent from './MainContent';
-import FooterContent from './FooterContent';
+import HeaderContainer from './HeaderContainer';
+import BreadcrumbContainer from './BreadcrumbContainer';
+import MainContainer from './MainContainer';
+import FooterContainer from './FooterContainer';
 import './App.scss';
 
 class App extends Component {
@@ -12,14 +12,14 @@ class App extends Component {
     return (
       <Layout className="layout">
         <Header>
-          <HeaderContent />
+          <HeaderContainer />
         </Header>
-        <BreadcrumbContent />
-        <Content style={{ padding: '0 0px' }}>
-          <MainContent />
+        <BreadcrumbContainer />
+        <Content>
+          <MainContainer />
         </Content>
         <Footer>
-          <FooterContent />
+          <FooterContainer />
         </Footer>
       </Layout>
     );

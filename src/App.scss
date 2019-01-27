@@ -1,10 +1,11 @@
 @import 'styles/_variables.scss';
 
 .ant-layout-header{
-    background-color: $white;
     height: 80px;
     padding: 3px 0;
+    background-color: $white;
 }
+
 .header{
     display: flex;
     align-items: center;
@@ -20,7 +21,6 @@
         padding-left: .5em;
         color: $red;
         font-size: 2.5em;
-
     }
     & .logo{
         height: 80%;
@@ -30,7 +30,6 @@
             width: auto;
         }
     }
-
 }
 
 .ant-breadcrumb{
@@ -47,12 +46,11 @@
     }
 }
 
-.mainContent{
+.mainContainer{
     background-color: $white;
     padding: 24px;
     min-height: 400px;
     min-width: 300px;
-
 }
 
 .movies{
@@ -66,6 +64,10 @@
         width: 43%;
         height: auto;
         margin: 2%;
-        min-width: 240px;
+        min-width: 300px;
     }
+}
+
+.ant-drawer-header{
+    padding: 16px 36px 16px 24px;
 }
