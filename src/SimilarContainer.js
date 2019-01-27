@@ -1,98 +1,107 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Drawer, Card } from 'antd';
-import {fetchSimilarMovies} from './services/similarMoviesAPI';
 import DefaultPoster from './img/default_poster.jpg';
 
-//const SimilarAPI = 'https://api.themoviedb.org/3/movie/{id}/similar?page=1&language=en-US&api_key=e7e1c27cb630e7739b0288b53d67d16e';
-
-class SimilarContainer extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-        visible: false, 
-        placement: 'right',
-        similarMovies: [],
-        isLoadingSimilar: false,
-        requestFailed: false,
-        errorSimilar: null,
-        currentTitle: null,
-        };
-    };    
-    
-    //listen for change on props
-    componentWillReceiveProps(nextProps) {
-        this.setState({currentTitle: `Movies Similar to ${nextProps.title}`, isLoadingSimilar: true});
-        fetchSimilarMovies({
-            id: nextProps.id,
-            page: '1',
-        })
-        .then(data => {
-            this.setState({
-                requestFailed: false,
-                similarMovies: data.results,
-                isLoadingSimilar: false
-            })
-        })
-        .then(this.setState({visible: true}))
-        .catch(error => this.setState({ error, isLoadingSimilar: false }));
-    };
-
+class SimilarView extends React.Component {
+    renderLoading() {
+        return <div>Loading...</div>;
+    }
+    renderError() {
+        return <div>I'm sorry! Please try again.</div>
+    }
     onClose = () => {
-        this.setState({
-        visible: false,
-        });
-    };
-
-    render(){
-        const {similarMovies, isLoadingSimilar, errorSimilar} = this.state;
-        if (errorSimilar) {
-            return <p>{errorSimilar.message}</p>;
-        }
-        if (isLoadingSimilar) {
-            return <div>Loading...</div>;
-        }
+        this.props.onClose();
+    }
+    renderSimilar() {
+        const props = this.props;
         return (
             <Drawer
-                title={this.state.currentTitle}
-                placement={this.state.placement}
-                closable={true}
-                onClose={this.onClose}
-                visible={this.state.visible}
-                width={280}
+            title={props.currentTitle}
+            placement={props.placement}
+            closable={true}
+            onClose={this.onClose}
+            visible={props.visible}
+            width={280}
             >
                 <div className="similar-movies">
-                    {
-                        similarMovies.length ? 
-                        (
-                            similarMovies.map(movie =>
-                            <Card
-                                hoverable
-                                key={movie.id}
-                                style={{ width: '100%' }}
-                                cover={
-                                    <img 
-                                        alt={movie.title} 
-                                        src={'http://image.tmdb.org/t/p/w500/'+movie.poster_path} 
-                                        ref={img => this.img = img} 
-                                        onError={() => this.img.src = DefaultPoster}
-                                        style={{}}
-                                    />
-                                }
-                            />)
-                        ):(
-                            <p>I can't find any similar titles for that movie. Please select a different movie.</p>
-                        )
-                    }
+                {
+                    props.similarMovies.length ? 
+                    (
+                        props.similarMovies.map(movie =>
+                        <Card
+                        hoverable
+                        key={movie.id}
+                        style={{ width: '100%' }}
+                        cover={
+                            <img 
+                            alt={movie.title} 
+                            src={'http://image.tmdb.org/t/p/w500/'+movie.poster_path} 
+                            ref={img => this.img = img} 
+                            onError={() => this.img.src = DefaultPoster}
+                            style={{}}
+                            />
+                            }
+                        />)
+                    ):(
+                        <p>I can't find any similar titles for that movie. Please select a different movie.</p>
+                    )
+                }
                 </div>
             </Drawer>
         )
     }
+    render() {
+        if(this.props.loading) {
+            return this.renderLoading();
+        } else if (this.props.similarMovies){
+            return this.renderSimilar();
+        } else {
+            return this.renderError();
+        }
+    }
 }
-SimilarContainer.propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-}
+
+class SimilarContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            visible: false,
+            placement: 'right',
+            currentTitle: null,
+            similarMovies: [],
+            error: null
+        }
+    };
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({currentTitle: `Movies Similar to ${nextProps.title}`});
+        fetch(`https://api.themoviedb.org/3/movie/${nextProps.id}/similar?page=1&language=en-US&api_key=e7e1c27cb630e7739b0288b53d67d16e`)
+        .then(res => res.json())
+        .then(data =>
+            this.setState({
+                error: false,
+                similarMovies: data.results,
+                loading: false
+            })
+        )
+        .then(this.setState({visible: true}))
+        .catch(error => this.setState({ error, loading: false }));
+    };
+
+    onClose = () => {
+        this.setState({ visible: false });
+    };
+
+    render() {
+        return (
+            <div className="galleryContainer">
+                <SimilarView {...this.state} onClose={this.onClose}  />
+            </div>
+        );
+    }
+
+    
+};
+
 export default SimilarContainer;
