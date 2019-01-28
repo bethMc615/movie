@@ -24,8 +24,8 @@ class SimilarView extends React.Component {
                 (
                     props.similarMovies.map(movie =>
                     <Card
-                    hoverable
                     key={movie.id}
+                    bordered={false}
                     style={{ width: '100%' }}
                     cover={
                         <img 
@@ -91,7 +91,7 @@ class SimilarContainer extends React.Component {
         return (
             <div className="similarContainer">
                 <Drawer
-                title={this.state.currentTitle}
+                title={ this.state.currentTitle }
                 placement={this.state.placement}
                 closable={true}
                 onClose={this.onClose}

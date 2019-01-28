@@ -1,9 +1,5 @@
 //Colors
-$gray: #353f48;
-$orange: #f49a22;
-$blue: #34476c;
-$teal: #5e9ea7;
 
-$black: #000;
-$white: #FFF;
-$red: #fb0438;
+$black:lighten(#000000, 15%);
+$white: #FFFFFF;
+$theme-main: darken(#40a9ff, 15%);

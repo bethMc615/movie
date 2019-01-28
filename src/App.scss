@@ -1,5 +1,7 @@
 @import 'styles/_variables.scss';
 
+
+// Header
 .ant-layout-header{
     height: 80px;
     padding: 3px 0;
@@ -19,12 +21,13 @@
     h1{
         margin: 0;
         padding-left: .5em;
-        color: $red;
+        color: $theme-main;
         font-size: 2.5em;
     }
     & .logo{
         height: 80%;
         display: flex;
+        opacity: 0.85;
         img{
             height: 100%;
             width: auto;
@@ -32,6 +35,7 @@
     }
 }
 
+// Breadcrumbs
 .ant-breadcrumb{
     background-color: $white;
     color: $black;
@@ -42,10 +46,18 @@
         color: $black;
     }
     & > span:last-child{
-        color: $red;
+        color: $theme-main;
     }
 }
 
+// Sorting & Filters
+#genre{
+    position: absolute;
+    left: calc(100% - 135px);
+    top: -42px;
+}
+
+// Main Content Area
 .mainContainer{
     background-color: $white;
     padding: 24px;
@@ -53,6 +65,7 @@
     min-width: 300px;
 }
 
+// Main Gallery
 .movies{
     display: flex;
     flex-direction: row;
@@ -60,14 +73,96 @@
     width: 100%;
     margin: 0 auto;
     justify-content: center;
-    & .movie{
-        width: 43%;
-        height: auto;
-        margin: 2%;
-        min-width: 300px;
+}
+// Movie Card
+.movie-card{
+    width: 43%;
+    height: auto;
+    margin: 2%;
+    min-width: 300px;
+    @media only screen and (max-width: 667px) {
+        margin: 4%;
+        width: 92%;
+    }
+    & .card-meta{
+        display: flex;
+        flex-direction: column;
+    }
+    & .meta-title{
+        font-size: 16px;
+        font-weight: 500;
+        width: 80%;
+    }
+    & .meta-rating{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        right: -10px;
+        top: -16px;
+        .meta-rating-text{
+            position: absolute;
+            color: black;
+            margin: 1px 0 0 -1px;
+            font-size: 18px;
+            letter-spacing: -0.1em;
+            font-weight: 800;
+        }
+        .star-holder{
+            width: 60px;
+            height: 60px;
+            & .star-fill{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                overflow:hidden;
+                svg {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    & .meta-date{
+        font-size: 14px;
+        font-weight: 500;
+        width: 80%;
+    }
+    & .meta-description{
+        font-size: 14px;
     }
 }
 
+// Similar Drawer
 .ant-drawer-header{
     padding: 16px 36px 16px 24px;
+}
+
+// Loading
+.loading{
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+// Footer
+.footer {
+    img{
+        width: 50%;
+        max-width: 150px;
+        height: auto;
+    }
 }
