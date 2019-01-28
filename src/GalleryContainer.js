@@ -15,7 +15,7 @@ class GalleryView extends React.Component {
         )
     }
     renderError() {
-        return <div>I'm sorry! Please try again.</div>;
+        return <div>Oops! Something went wrong. Please try again.</div>;
     }
     renderGallery() {
         const movies = this.props.movies.results;
@@ -46,6 +46,7 @@ class GalleryView extends React.Component {
     }
 }
 
+// Genre Filtering Select
 class FilterGenre extends React.Component{
     onGenreChange = (value) => {
         this.props.onGenreChange(value);
@@ -69,7 +70,6 @@ class FilterGenre extends React.Component{
     }
 }
       
-
 class GalleryContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -78,7 +78,7 @@ class GalleryContainer extends React.Component {
             genreFilter: '',
         };
     };    
-
+    // fetch currently playing movie data
     componentDidMount() {
         fetch("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&region=US&api_key=e7e1c27cb630e7739b0288b53d67d16e")
         .then(res => res.json())

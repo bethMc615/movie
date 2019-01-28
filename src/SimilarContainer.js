@@ -13,7 +13,7 @@ class SimilarView extends React.Component {
         )
     }
     renderError() {
-        return <div>I'm sorry! Please try again.</div>
+        return <div>Oops! Something went wrong. Please try again.</div>
     }
     renderSimilar() {
         const props = this.props;
@@ -33,12 +33,11 @@ class SimilarView extends React.Component {
                         src={'http://image.tmdb.org/t/p/w500/'+movie.poster_path} 
                         ref={img => this.img = img} 
                         onError={() => this.img.src = DefaultPoster}
-                        style={{}}
                         />
                         }
                     />)
                 ):(
-                    <p>I can't find any similar titles for that movie. Please select a different movie.</p>
+                    <p>Hmmm, I couldn't find any similar titles for that movie. Please select a different movie.</p>
                 )
             }
             </div>
