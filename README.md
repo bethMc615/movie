@@ -82,14 +82,14 @@ CORS is when a application on one domain makes a request for resources from anot
 
 ## Next Steps I Might have Taken
 
-    - **Store** - I did not implement Redux or Context given this component tree is pretty shallow and there’s not much state, but I would have for anything larger.
+1. **Store** - I did not implement Redux or Context given this component tree is pretty shallow and there’s not much state, but I would have for anything larger.
 
-    - **Full Details Page** - I would have created a Full Details page that could be accessed by clicking any of the movies or similar movies. There would have been a "Back to Currently Playing" button. I would then have added a Router to the project and updated the Breadcrumb to reflect the currently viewed movie.
+2. **Full Details Page** - I would have created a Full Details page that could be accessed by clicking any of the movies or similar movies. There would have been a "Back to Currently Playing" button. I would then have added a Router to the project and updated the Breadcrumb to reflect the currently viewed movie.
 
-    - **Further Refactoring** - There are a few areas where I could refactor into smaller components. For example, the loader is used in GalleryContainer and SimilarContainer, so I could have broken that out into it’s own component.
+3. **Further Refactoring** - There are a few areas where I could refactor into smaller components. For example, the loader is used in GalleryContainer and SimilarContainer, so I could have broken that out into it’s own component.
 
-    - **Additional Styling** - I left the Ant components fairly untouched. I would overwrite the base Ant theme to customize the components generally and then write CSS to sytlize them more specifically.
+4. **Additional Styling** - I left the Ant components fairly untouched. I would overwrite the base Ant theme to customize the components generally and then write CSS to sytlize them more specifically.
 
-    - **Animation** - I'd animate the movie cards on the screen, so when loading, or filtering they would slide more nicely onto the page.
+5. **Animation** - I'd animate the movie cards on the screen, so when loading, or filtering they would slide more nicely onto the page.
 
 
