@@ -1,19 +1,25 @@
 import React from 'react';
 import { Select } from 'antd';
 import MovieCard from './MovieCard';
+import loading from './img/loading.gif';
 
 const Option = Select.Option;
 
 class GalleryView extends React.Component {
     renderLoading() {
-        return <div>Loading...</div>;
+        return (
+            <div className="loading">
+                <img alt="loading..." src={loading} />
+                <p>Loading...</p>
+            </div>
+        )
     }
     renderError() {
         return <div>I'm sorry! Please try again.</div>;
     }
     renderGallery() {
         const movies = this.props.movies.results;
-        return (
+        return (  
             <div className="movies">
                 {movies.filter(
                     movie => Number(this.props.genreFilter) === 0 || 

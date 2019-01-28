@@ -1,53 +1,47 @@
 import React from 'react';
 import { Drawer, Card } from 'antd';
 import DefaultPoster from './img/default_poster.jpg';
+import loading from './img/loading.gif';
 
 class SimilarView extends React.Component {
     renderLoading() {
-        return <div>Loading...</div>;
+        return (
+            <div className="loading">
+                <img alt="loading..." src={loading} />
+                <p>Loading...</p>
+            </div>
+        )
     }
     renderError() {
         return <div>I'm sorry! Please try again.</div>
     }
-    onClose = () => {
-        this.props.onClose();
-    }
     renderSimilar() {
         const props = this.props;
         return (
-            <Drawer
-            title={props.currentTitle}
-            placement={props.placement}
-            closable={true}
-            onClose={this.onClose}
-            visible={props.visible}
-            width={280}
-            >
-                <div className="similar-movies">
-                {
-                    props.similarMovies.length ? 
-                    (
-                        props.similarMovies.map(movie =>
-                        <Card
-                        hoverable
-                        key={movie.id}
-                        style={{ width: '100%' }}
-                        cover={
-                            <img 
-                            alt={movie.title} 
-                            src={'http://image.tmdb.org/t/p/w500/'+movie.poster_path} 
-                            ref={img => this.img = img} 
-                            onError={() => this.img.src = DefaultPoster}
-                            style={{}}
-                            />
-                            }
-                        />)
-                    ):(
-                        <p>I can't find any similar titles for that movie. Please select a different movie.</p>
-                    )
-                }
-                </div>
-            </Drawer>
+            <div className="similar-movies">
+            {
+                props.similarMovies.length ? 
+                (
+                    props.similarMovies.map(movie =>
+                    <Card
+                    hoverable
+                    key={movie.id}
+                    style={{ width: '100%' }}
+                    cover={
+                        <img 
+                        alt={movie.title} 
+                        src={'http://image.tmdb.org/t/p/w500/'+movie.poster_path} 
+                        ref={img => this.img = img} 
+                        onError={() => this.img.src = DefaultPoster}
+                        style={{}}
+                        />
+                        }
+                    />)
+                ):(
+                    <p>I can't find any similar titles for that movie. Please select a different movie.</p>
+                )
+            }
+            </div>
         )
     }
     render() {
@@ -75,8 +69,8 @@ class SimilarContainer extends React.Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        this.setState({currentTitle: `Movies Similar to ${nextProps.title}`});
-        fetch(`https://api.themoviedb.org/3/movie/${nextProps.id}/similar?page=1&language=en-US&api_key=e7e1c27cb630e7739b0288b53d67d16e`)
+        this.setState({currentTitle: `Movies Similar to ${nextProps.similarMovie.title}`, loading:true });
+        fetch(`https://api.themoviedb.org/3/movie/${nextProps.similarMovie.id}/similar?page=1&language=en-US&api_key=e7e1c27cb630e7739b0288b53d67d16e`)
         .then(res => res.json())
         .then(data =>
             this.setState({
@@ -85,8 +79,8 @@ class SimilarContainer extends React.Component {
                 loading: false
             })
         )
-        .then(this.setState({visible: true}))
-        .catch(error => this.setState({ error, loading: false }));
+        .catch(error => this.setState({ error, loading: false }))
+        .finally(this.setState({visible: true}));
     };
 
     onClose = () => {
@@ -95,8 +89,17 @@ class SimilarContainer extends React.Component {
 
     render() {
         return (
-            <div className="galleryContainer">
-                <SimilarView {...this.state} onClose={this.onClose}  />
+            <div className="similarContainer">
+                <Drawer
+                title={this.state.currentTitle}
+                placement={this.state.placement}
+                closable={true}
+                onClose={this.onClose}
+                visible={this.state.visible}
+                width={280}
+                >
+                    <SimilarView similarMovies={this.state.similarMovies}  />
+                </Drawer>
             </div>
         );
     }
