@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Icon } from 'antd';
+import { Card, Button } from 'antd';
 import LinesEllipsis from 'react-lines-ellipsis';
 import moment from 'moment';
 import DefaultBackdrop from './img/default_backdrop.jpg';

@@ -1,8 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Cloning and Running Project
 
-From within the project directory, you can run:
+Clone or download a zip of this project.
+From within the project directory, run:
+
+### `npm install` 
+
+Installs the projects dependencies.
 
 ### `npm start`
 
