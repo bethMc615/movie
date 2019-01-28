@@ -56,15 +56,25 @@ This app displays the top 20 movies currently playing in theaters. You can also 
 
 ### Files
 **App.js** - contains the project layout
+
 **HeaderContainer.js** - contains the header content
+
 **BreadcrumbContainer.js** - contains the breadcrumb content
+
 **MainContainer.js** - contains the main body of the page
+
 **GalleryContainer.js** - makes a call to Get Now Playing and displays a grid of the results returned.
+
 **MovieCard.js** - uses Ant Card component for each movie display. The Ant Button component is used for the See Similar Movies button.
-**SimilarContainer.js** - Makes a call to Get Similar Movies and uses the Ant Drawer component to display a Ant Card component for each movie result.    
+
+**SimilarContainer.js** - Makes a call to Get Similar Movies and uses the Ant Drawer component to display a Ant Card component for each movie result.
+
 **FooterContainer.js** - contains the footer content
+
 **App.scss** - the main sass styles for the application
+
 **styles/_variables.scss** - contains sass styling variables
+
 
 ## CORS Information
 
