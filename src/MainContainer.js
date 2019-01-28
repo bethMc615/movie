@@ -6,19 +6,17 @@ class MainContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            similarID: '',
-            similarTitle: '',
+            similarMovie: null,
         };
     };    
     setSimilar = (param) => {
-        this.setState({ similarID: param.id, similarTitle: param.title });
+        this.setState({ similarMovie: param });
     };
     render() {
-        const {similarID, similarTitle} = this.state;
         return (
             <div className="MainContainer">
                 <GalleryContainer setSimilar={this.setSimilar} />
-                <SimilarContainer id={similarID.toString()} title={similarTitle} />
+                <SimilarContainer similarMovie={this.state.similarMovie} />
             </div>
         );
     }
